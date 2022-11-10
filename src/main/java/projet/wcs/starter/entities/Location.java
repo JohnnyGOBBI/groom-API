@@ -12,9 +12,9 @@ public class Location {
     private String adress;
     private String picture;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)
-    @JoinColumn(name = "location_id", nullable = true)
-    public Location location;
+    @ManyToOne
+    @JoinColumn(name = "place_id", nullable = true)
+    private Place place;
 
     public Long getId() {
         return id;

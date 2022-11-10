@@ -20,7 +20,8 @@ public class Booking {
 
     private String email;
 
-    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
+    @OneToMany
+    @JoinColumn(name = "room_idRoom")
     private List<Room> rooms;
 
 
