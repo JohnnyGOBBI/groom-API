@@ -13,16 +13,13 @@ public class Place {
     private String name;
     private String map;
 
-    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
-    @JoinColumn(name = "location_id", nullable = true)
-    private List<Location> locations;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)
+    @ManyToOne
     @JoinColumn(name = "room_idRoom", nullable = true)
     public Room room;
 
-
-
+    public Place() {
+    }
 
     public Long getId() {
         return id;
@@ -47,4 +44,5 @@ public class Place {
     public void setMap(String map) {
         this.map = map;
     }
+
 }
