@@ -1,10 +1,13 @@
 package projet.wcs.starter.controllers;
+import org.springframework.beans.factory.annotation.Autowired;
+import projet.wcs.starter.repositories.PlaceRepository;
 
-import org.springframework.web.bind.annotation.GetMapping;
 
 public class PlaceController {
-    @GetMapping("/room")
-    public String getPlaces(){
-        return "true";
-    }
+
+    @Autowired
+    private PlaceRepository placeRepository;
+
+
+
 }

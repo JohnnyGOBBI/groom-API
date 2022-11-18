@@ -8,24 +8,28 @@ import java.util.List;
 public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private int id;
     private String name;
     private String map;
 
-
     @ManyToOne
-    @JoinColumn(name = "room_idRoom", nullable = true)
-    public Room room;
+    private Location location;
 
-    public Place() {
+    public Place(){
+
+    }
+    public Location getLocation() {
+        return location;
     }
 
-    public Long getId() {
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,5 +48,8 @@ public class Place {
     public void setMap(String map) {
         this.map = map;
     }
+
+
+
 
 }
