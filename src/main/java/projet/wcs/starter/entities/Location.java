@@ -2,25 +2,34 @@ package projet.wcs.starter.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private int id;
     private String name;
-    private String adress;
+    private String address;
     private String picture;
 
-    @ManyToOne
-    @JoinColumn(name = "place_id", nullable = true)
-    private Place place;
+    public Location(){
 
-    public Long getId() {
+    }
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -32,19 +41,16 @@ public class Location {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getPicture() {
-        return picture;
-    }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
+
+
+
 }

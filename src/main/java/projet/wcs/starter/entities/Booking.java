@@ -9,36 +9,36 @@ import java.util.List;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String number;
+    private int id;
+    private String bookingNumber;
     private String password;
-
     private Date beginDate;
-
     private Date endDate;
-
     private String email;
 
-    @OneToMany
-    @JoinColumn(name = "room_idRoom")
-    private List<Room> rooms;
+
+    @ManyToOne
+    private Room room;
+
+    public Booking(){
 
 
-    public Long getId() {
+    }
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getBookingNumber() {
+        return bookingNumber;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setBookingNumber(String bookingNumber) {
+        this.bookingNumber = bookingNumber;
     }
 
     public String getPassword() {
@@ -72,4 +72,20 @@ public class Booking {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+
+
+
+
+
+
+
 }
