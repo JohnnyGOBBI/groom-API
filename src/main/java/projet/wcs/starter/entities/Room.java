@@ -1,5 +1,6 @@
 package projet.wcs.starter.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -9,30 +10,21 @@ import java.util.List;
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     private String name;
 
     private String picture;
     private int capacity;
 
-    public Room(){
 
-    }
 
     @ManyToOne
+    @JsonIgnore
     private Place place;
 
-    @ManyToOne
-    private Location location;
+    public Room(){
 
-
-
-    public Location getLocation() {
-        return location;
-    }
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public int getCapacity() {
@@ -42,12 +34,8 @@ public class Room {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-    public void setId(long id) {
-        this.id = id;
-    }
 
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 

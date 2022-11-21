@@ -13,15 +13,12 @@ import java.util.Optional;
 @Transactional
 public interface RoomRepository extends JpaRepository<Room,Long> {
 
-    public List<Room> findByPlaceId(Long placeId);
+    public List<Room> findAll();
+    public List<Room> findByPlaceId(int placeId);
 
-    public List<Room> findByLocationId(Long locationId);
     public List<Room> findByCapacity(int capacity);
 
     public List<Room> findByPlaceIdAndCapacity(long placeId, int capacity);
-
-
-
 
 
 

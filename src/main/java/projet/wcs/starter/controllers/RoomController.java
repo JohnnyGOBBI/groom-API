@@ -1,5 +1,6 @@
 package projet.wcs.starter.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import projet.wcs.starter.entities.Room;
@@ -14,8 +15,6 @@ import java.util.regex.Pattern;
 public class RoomController {
     @Autowired
     private RoomRepository roomRepository;
-    @Autowired
-    private LocationRepository locationRepository;
 
 
     @GetMapping("/rooms")
@@ -29,17 +28,17 @@ public class RoomController {
         return roomRepository.findById(id);
     }
 
+    @PostMapping("/rooms")
+    public Room create(@RequestBody @Valid Room room) {
+        return roomRepository.save(room);
+    }
+
 
     @RequestMapping("/places/{id}/rooms")
-    public List<Room> getRoomsByplaceId(@PathVariable long id) {
+    public List<Room> getRoomsByplaceId(@PathVariable int id) {
 
         return roomRepository.findByPlaceId(id);
 
-    }
-
-    @RequestMapping("/locations/{id}/rooms")
-    public List<Room> getRoomsByLocationId(@PathVariable long id){
-        return roomRepository.findByLocationId(id);
     }
 
     @RequestMapping("/roomList")
