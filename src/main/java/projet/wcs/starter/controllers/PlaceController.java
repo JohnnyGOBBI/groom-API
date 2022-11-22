@@ -1,8 +1,10 @@
 package projet.wcs.starter.controllers;
 
 import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import projet.wcs.starter.dto.PlaceDto;
 import projet.wcs.starter.entities.Place;
 import projet.wcs.starter.repositories.PlaceRepository;
 
@@ -17,6 +19,9 @@ public class PlaceController {
     @Autowired
     private PlaceRepository placeRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @GetMapping
     private List<Place> getAllPlaces() {
         return placeRepository.findAll();
@@ -28,14 +33,23 @@ public class PlaceController {
     }
 
     @PostMapping()
-    public Place create(@RequestBody @Valid Place place) {
-        return placeRepository.save(place);
+    public PlaceDto create(@RequestBody @Valid PlaceDto place) {
+        Place savedPlace = placeRepository.save(modelMapper.map(place, Place.class));
+        return modelMapper.map(savedPlace, PlaceDto.class);
     }
 
     @PutMapping("/{id}")
-    public Place update(@PathVariable int id, @RequestBody @Valid Place place) {
-        place.setId(id);
-        return placeRepository.save(place);
+    public PlaceDto update(@PathVariable Long id, @RequestBody @Valid PlaceDto place) {
+        PlaceDto updatePlace = modelMapper.map(placeRepository.findById(id).get(), PlaceDto.class);
+        updatePlace = place;
+        placeRepository.save(modelMapper.map(updatePlace, Place.class));
+        return modelMapper.map(updatePlace, PlaceDto.class);
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Long id) {
+        placeRepository.deleteById(id);
+        return "redirect:/places";
     }
 
 

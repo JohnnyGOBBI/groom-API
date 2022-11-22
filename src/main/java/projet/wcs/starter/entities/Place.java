@@ -26,6 +26,7 @@ public class Place {
 
     @ManyToOne
     @JsonIgnore
+    @JoinColumn(name = "location_id")
     private Location location;
 
     public Place(){
