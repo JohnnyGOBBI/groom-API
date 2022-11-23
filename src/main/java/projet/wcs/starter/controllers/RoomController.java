@@ -70,8 +70,9 @@ public class RoomController {
     }
 
     @RequestMapping("/room/placeandcapcity")
-    public List<Room> getRoomsByPlaceNameAndCapacity(@RequestParam int capacity){
+    public List<Room> getRoomsByPlaceNameAndCapacity(@RequestParam int capacity) {
         return roomRepository.findByCapacity(capacity);
+    }
 
     @RequestMapping("/rooms/bookings")
     public List<RoomDto> getRoomsByPlaceAndCapacity(@RequestParam  int placeId, @RequestParam int capacity, @RequestParam String beginString, @RequestParam String  endString) throws ParseException {
