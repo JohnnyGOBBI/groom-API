@@ -1,8 +1,10 @@
 package projet.wcs.starter.entities;
 
 import jakarta.persistence.*;
+import jdk.jshell.Snippet;
 
 import java.util.List;
+import java.util.Locale;
 
 @Entity
 @Table(name="room")
@@ -10,9 +12,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String name;
-
     private String picture;
     private int capacity;
 
@@ -20,20 +20,9 @@ public class Room {
 
     }
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER, optional=true, cascade = CascadeType.ALL)
     private Place place;
 
-    @ManyToOne
-    private Location location;
-
-
-
-    public Location getLocation() {
-        return location;
-    }
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public int getCapacity() {
         return capacity;
@@ -45,7 +34,6 @@ public class Room {
     public void setId(long id) {
         this.id = id;
     }
-
 
     public long getId() {
         return id;

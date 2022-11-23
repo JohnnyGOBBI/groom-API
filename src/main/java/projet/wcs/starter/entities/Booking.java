@@ -1,9 +1,7 @@
 package projet.wcs.starter.entities;
-
 import jakarta.persistence.*;
-
 import java.util.Date;
-import java.util.List;
+
 
 @Entity
 public class Booking {
@@ -16,18 +14,31 @@ public class Booking {
     private Date endDate;
     private String email;
 
+    public Date getBeginDate() {
+        return beginDate;
+    }
 
-    @ManyToOne
-    private Room room;
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
     public Booking(){
 
-
     }
+    @ManyToOne
+    private Room room;
+
     public int getId() {
         return id;
     }
-
 
     public void setId(int id) {
         this.id = id;
@@ -49,22 +60,6 @@ public class Booking {
         this.password = password;
     }
 
-    public Date getBeginDate() {
-        return beginDate;
-    }
-
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -82,10 +77,4 @@ public class Booking {
     }
 
 
-
-
-
-
-
-
-}
+    }

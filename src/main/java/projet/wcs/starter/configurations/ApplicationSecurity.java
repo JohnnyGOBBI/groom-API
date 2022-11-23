@@ -47,6 +47,7 @@ public class ApplicationSecurity {
                         .requestMatchers(
                                 request -> request.getMethod().equals("OPTIONS")
                                         || request.getRequestURI().contains("/auth/")
+                                || (request.getMethod().equals("GET") && request.getRequestURI().contains("/rooms"))
                         ).permitAll()
                         .anyRequest().authenticated()
         );
