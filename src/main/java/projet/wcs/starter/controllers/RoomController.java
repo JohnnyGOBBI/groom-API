@@ -47,8 +47,7 @@ public class RoomController {
 
     @PostMapping("/rooms")
     public RoomDto create(@RequestBody RoomDto roomDto) {
-        Room room = modelMapper.map(roomDto, Room.class);
-        Room savedRoom = roomRepository.save(room);
+        Room savedRoom = roomRepository.save(modelMapper.map(roomDto, Room.class));
         return modelMapper.map(savedRoom, RoomDto.class);
     }
 
@@ -70,8 +69,9 @@ public class RoomController {
     }
 
     @RequestMapping("/room/placeandcapcity")
-    public List<Room> getRoomsByPlaceNameAndCapacity(@RequestParam int capacity){
+    public List<Room> getRoomsByPlaceNameAndCapacity(@RequestParam int capacity) {
         return roomRepository.findByCapacity(capacity);
+    }
 
     @RequestMapping("/rooms/bookings")
     public List<RoomDto> getRoomsByPlaceAndCapacity(@RequestParam  int placeId, @RequestParam int capacity, @RequestParam String beginString, @RequestParam String  endString) throws ParseException {
