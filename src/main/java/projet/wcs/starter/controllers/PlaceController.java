@@ -57,12 +57,6 @@ public class PlaceController {
     }
 
 
-    @GetMapping("/places")
-    public List<Place> getAllPlaces(){
-        return placeRepository.findAll();
-    }
-
-
     @RequestMapping("/places/{id}")
     public Optional<Place> getPlaces(@PathVariable long id){
         return placeRepository.findById(id);
