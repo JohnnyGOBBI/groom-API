@@ -2,8 +2,10 @@ package projet.wcs.starter.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jdk.jshell.Snippet;
 
 import java.util.List;
+import java.util.Locale;
 
 @Entity
 @Table(name="room")
@@ -11,14 +13,12 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
-
     private String picture;
     private int capacity;
 
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER, optional=true, cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name = "place_id")
     private Place place;
@@ -26,6 +26,7 @@ public class Room {
     public Room(){
 
     }
+
 
     public int getCapacity() {
         return capacity;

@@ -2,12 +2,14 @@ package projet.wcs.starter.dto;
 
 import java.util.List;
 
+
 public class LocationDto {
     private int id;
     private String name;
     private String address;
     private String picture;
     private List<PlaceDto> places;
+
 
     public int getId() {
         return id;
@@ -48,4 +50,5 @@ public class LocationDto {
     public void setPlaces(List<PlaceDto> places) {
         this.places = places;
     }
+
 }

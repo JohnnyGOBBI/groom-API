@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.*;
 import projet.wcs.starter.dto.PlaceDto;
 import projet.wcs.starter.entities.Place;
 import projet.wcs.starter.repositories.PlaceRepository;
+import java.util.List;
+import java.util.Optional;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin
+
 @RequestMapping("/places")
+
 public class PlaceController {
 
     @Autowired
@@ -50,6 +54,18 @@ public class PlaceController {
     public String delete(@PathVariable Long id) {
         placeRepository.deleteById(id);
         return "redirect:/places";
+    }
+
+
+    @GetMapping("/places")
+    public List<Place> getAllPlaces(){
+        return placeRepository.findAll();
+    }
+
+
+    @RequestMapping("/places/{id}")
+    public Optional<Place> getPlaces(@PathVariable long id){
+        return placeRepository.findById(id);
     }
 
 

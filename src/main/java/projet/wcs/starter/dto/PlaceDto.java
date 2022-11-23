@@ -1,9 +1,13 @@
 package projet.wcs.starter.dto;
 
+import projet.wcs.starter.entities.Location;
+
+
 public class PlaceDto {
     private int id;
     private String name;
     private String map;
+
     private int locationId;
 
     public int getLocationId() {
@@ -13,6 +17,7 @@ public class PlaceDto {
     public void setLocationId(int locationId) {
         this.locationId = locationId;
     }
+
 
     public int getId() {
         return id;
@@ -37,6 +42,4 @@ public class PlaceDto {
     public void setMap(String map) {
         this.map = map;
     }
-
-
 }

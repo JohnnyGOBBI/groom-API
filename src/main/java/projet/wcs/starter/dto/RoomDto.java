@@ -12,6 +12,7 @@ public class RoomDto {
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 
@@ -39,6 +40,7 @@ public class RoomDto {
         this.capacity = capacity;
     }
 
+
     public int getPlaceId() {
         return placeId;
     }
@@ -46,4 +48,5 @@ public class RoomDto {
     public void setPlaceId(int placeId) {
         this.placeId = placeId;
     }
+
 }

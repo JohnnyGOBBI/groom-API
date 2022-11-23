@@ -13,6 +13,7 @@ public class Place {
     private String name;
     private String map;
 
+
     @OneToMany(mappedBy = "place")
     private List<Room> rooms;
 
@@ -23,6 +24,9 @@ public class Place {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+
+
+
 
     @ManyToOne
     @JsonIgnore
@@ -62,8 +66,5 @@ public class Place {
     public void setMap(String map) {
         this.map = map;
     }
-
-
-
 
 }
