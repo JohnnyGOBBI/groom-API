@@ -54,7 +54,6 @@ public class PlaceController {
         placeRepository.deleteById(id);
         return "redirect:/places";
     }
-    
 
 
     @RequestMapping("/places/{id}")
