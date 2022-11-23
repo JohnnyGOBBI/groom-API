@@ -37,17 +37,16 @@ public class PlaceController {
     }
 
     @PostMapping()
-    public PlaceDto create(@RequestBody @Valid PlaceDto place) {
-        Place savedPlace = placeRepository.save(modelMapper.map(place, Place.class));
+    public PlaceDto create(@RequestBody @Valid PlaceDto placeDto) {
+        Place savedPlace = placeRepository.save(modelMapper.map(placeDto, Place.class));
         return modelMapper.map(savedPlace, PlaceDto.class);
     }
 
     @PutMapping("/{id}")
-    public PlaceDto update(@PathVariable Long id, @RequestBody @Valid PlaceDto place) {
-        PlaceDto updatePlace = modelMapper.map(placeRepository.findById(id).get(), PlaceDto.class);
-        updatePlace = place;
-        placeRepository.save(modelMapper.map(updatePlace, Place.class));
-        return modelMapper.map(updatePlace, PlaceDto.class);
+    public PlaceDto update(@PathVariable int id, @RequestBody @Valid PlaceDto placeDto) {
+        placeDto.setId(id);
+        Place place = placeRepository.save(modelMapper.map(placeDto, Place.class));
+        return modelMapper.map(place, PlaceDto.class);
     }
 
     @DeleteMapping("/{id}")

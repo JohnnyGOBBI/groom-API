@@ -47,8 +47,7 @@ public class RoomController {
 
     @PostMapping("/rooms")
     public RoomDto create(@RequestBody RoomDto roomDto) {
-        Room room = modelMapper.map(roomDto, Room.class);
-        Room savedRoom = roomRepository.save(room);
+        Room savedRoom = roomRepository.save(modelMapper.map(roomDto, Room.class));
         return modelMapper.map(savedRoom, RoomDto.class);
     }
 
