@@ -11,11 +11,15 @@ import java.util.List;
 @Repository
 @Transactional
 public interface RoomRepository extends JpaRepository<Room,Long> {
-    public List<Room> findByPlaceId(long placeId);
-    List<RoomDto> findByPlaceIdAndCapacityAfter(int placeId, int capacity);
 
+    public List<Room> findAll();
+    public List<Room> findByPlaceId(int placeId);
 
+    public List<Room> findByCapacity(int capacity);
 
+    public List<Room> findByPlaceIdAndCapacity(long placeId, int capacity);
+    
+    public List<RoomDto> findByPlaceIdAndCapacityAfter(int placeId, int capacity);
 
 
 

@@ -1,5 +1,6 @@
 package projet.wcs.starter.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jdk.jshell.Snippet;
 
@@ -11,17 +12,20 @@ import java.util.Locale;
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String name;
     private String picture;
     private int capacity;
 
+
+    @ManyToOne(fetch=FetchType.EAGER, optional=true, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinColumn(name = "place_id")
+    private Place place;
+
     public Room(){
 
     }
-
-    @ManyToOne(fetch=FetchType.EAGER, optional=true, cascade = CascadeType.ALL)
-    private Place place;
 
 
     public int getCapacity() {
@@ -31,11 +35,8 @@ public class Room {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-    public void setId(long id) {
-        this.id = id;
-    }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

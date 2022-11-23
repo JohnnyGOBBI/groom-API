@@ -9,8 +9,12 @@ import projet.wcs.starter.entities.Room;
 import java.util.List;
 
 
+import java.util.List;
+
 @Repository
 @Transactional
 public interface PlaceRepository extends JpaRepository<Place,Long> {
+
+    public List<Place> findAll();
 
 }

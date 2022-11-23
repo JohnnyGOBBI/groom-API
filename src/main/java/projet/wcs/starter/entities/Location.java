@@ -13,6 +13,17 @@ public class Location {
     private String address;
     private String picture;
 
+    @OneToMany(mappedBy = "location")
+    private List<Place> places;
+
+    public List<Place> getPlaces() {
+        return places;
+    }
+
+    public void setPlaces(List<Place> places) {
+        this.places = places;
+    }
+
     public Location(){
 
     }

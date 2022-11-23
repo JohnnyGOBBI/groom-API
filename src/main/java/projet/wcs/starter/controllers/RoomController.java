@@ -1,11 +1,15 @@
 package projet.wcs.starter.controllers;
+
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import projet.wcs.starter.dto.BookingDto;
+import org.springframework.web.server.ResponseStatusException;
 import projet.wcs.starter.dto.RoomDto;
-import projet.wcs.starter.entities.Booking;
 import projet.wcs.starter.entities.Room;
+import projet.wcs.starter.dto.BookingDto;
+import projet.wcs.starter.entities.Booking;
 import projet.wcs.starter.repositories.BookingRepository;
 import projet.wcs.starter.repositories.LocationRepository;
 import projet.wcs.starter.repositories.RoomRepository;
@@ -41,11 +45,33 @@ public class RoomController {
         return modelMapper.map(roomRepository.findById(id).get(),RoomDto.class);
     }
 
-    @RequestMapping("/places/{id}/rooms")
-    public List<Room> getRoomsByplaceId(@PathVariable long id) {
-        return roomRepository.findByPlaceId(id);
-
+    @PostMapping("/rooms")
+    public RoomDto create(@RequestBody RoomDto roomDto) {
+        Room room = modelMapper.map(roomDto, Room.class);
+        Room savedRoom = roomRepository.save(room);
+        return modelMapper.map(savedRoom, RoomDto.class);
     }
+
+    @PutMapping("/rooms/{id}")
+    public RoomDto update(@PathVariable int id, @RequestBody @Valid RoomDto roomDto) {
+        roomDto.setId(id);
+        Room room = roomRepository.save(modelMapper.map(roomDto, Room.class));
+        return modelMapper.map(room, RoomDto.class);
+    }
+
+    @RequestMapping("/places/{id}/rooms")
+    public List<Room> getRoomsByplaceId(@PathVariable int id) {
+        return roomRepository.findByPlaceId(id);
+    }
+
+    @RequestMapping("/roomList")
+    public List<Room> getRoomsByPlaceAndCapacity(@RequestParam long placeId,@RequestParam int capacity){
+        return roomRepository.findByPlaceIdAndCapacity(placeId,capacity);
+    }
+
+    @RequestMapping("/room/placeandcapcity")
+    public List<Room> getRoomsByPlaceNameAndCapacity(@RequestParam int capacity){
+        return roomRepository.findByCapacity(capacity);
 
     @RequestMapping("/rooms/bookings")
     public List<RoomDto> getRoomsByPlaceAndCapacity(@RequestParam  int placeId, @RequestParam int capacity, @RequestParam String beginString, @RequestParam String  endString) throws ParseException {
@@ -70,6 +96,7 @@ public class RoomController {
             }
             return true;
         }).toList();
+
     }
 
 

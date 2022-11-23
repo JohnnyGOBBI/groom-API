@@ -1,17 +1,18 @@
 package projet.wcs.starter.dto;
-import projet.wcs.starter.entities.Place;
 
 public class RoomDto {
-    private long id;
+    private int id;
     private String name;
     private String picture;
     private int capacity;
+    private int placeId;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
+
         this.id = id;
     }
 
@@ -39,13 +40,13 @@ public class RoomDto {
         this.capacity = capacity;
     }
 
-    public Place getPlace() {
-        return place;
+
+    public int getPlaceId() {
+        return placeId;
     }
 
-    public void setPlace(Place place) {
-        this.place = place;
+    public void setPlaceId(int placeId) {
+        this.placeId = placeId;
     }
 
-    private Place place;
 }

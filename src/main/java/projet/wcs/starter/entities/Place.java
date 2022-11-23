@@ -1,5 +1,6 @@
 package projet.wcs.starter.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,9 +13,24 @@ public class Place {
     private String name;
     private String map;
 
-    private int stage;
+
+    @OneToMany(mappedBy = "place")
+    private List<Room> rooms;
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+
+
 
     @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "location_id")
     private Location location;
 
     public Place(){
@@ -51,12 +67,4 @@ public class Place {
         this.map = map;
     }
 
-
-    public int getStage() {
-        return stage;
-    }
-
-    public void setStage(int stage) {
-        this.stage = stage;
-    }
 }
