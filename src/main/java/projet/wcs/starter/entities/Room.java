@@ -18,9 +18,9 @@ public class Room {
     private int capacity;
 
 
-
     @ManyToOne
     @JsonIgnore
+    @JoinColumn(name = "place_id")
     private Place place;
 
     public Room(){
