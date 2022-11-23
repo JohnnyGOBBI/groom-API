@@ -12,6 +12,8 @@ public class Place {
     private String name;
     private String map;
 
+    private int stage;
+
     @ManyToOne
     private Location location;
 
@@ -50,6 +52,11 @@ public class Place {
     }
 
 
+    public int getStage() {
+        return stage;
+    }
 
-
+    public void setStage(int stage) {
+        this.stage = stage;
+    }
 }
