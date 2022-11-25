@@ -13,7 +13,7 @@ public class Location {
     private String address;
     private String picture;
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE)
     private List<Place> places;
 
     public List<Place> getPlaces() {

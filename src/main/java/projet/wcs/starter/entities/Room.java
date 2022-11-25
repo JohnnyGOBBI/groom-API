@@ -18,7 +18,8 @@ public class Room {
     private int capacity;
 
 
-    @ManyToOne(fetch=FetchType.EAGER, optional=true, cascade = CascadeType.ALL)
+//    @ManyToOne(fetch=FetchType.EAGER, optional=true, cascade = CascadeType.ALL)
+    @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "place_id")
     private Place place;

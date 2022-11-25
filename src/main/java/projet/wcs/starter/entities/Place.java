@@ -14,7 +14,7 @@ public class Place {
     private String map;
 
 
-    @OneToMany(mappedBy = "place")
+    @OneToMany(mappedBy = "place", cascade = CascadeType.REMOVE)
     private List<Room> rooms;
 
     public List<Room> getRooms() {
