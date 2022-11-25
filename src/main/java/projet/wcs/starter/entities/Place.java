@@ -3,6 +3,7 @@ package projet.wcs.starter.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,12 @@ public class Place {
 
     @OneToMany(mappedBy = "place")
     private List<Room> rooms;
+
+
+
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private byte[] picture;
 
     public List<Room> getRooms() {
         return rooms;
@@ -65,6 +72,14 @@ public class Place {
 
     public void setMap(String map) {
         this.map = map;
+    }
+
+    public String getPicture() {
+        return new String(picture, StandardCharsets.UTF_8);
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture.getBytes();
     }
 
 }

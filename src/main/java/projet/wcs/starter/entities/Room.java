@@ -24,6 +24,8 @@ public class Room {
     @JoinColumn(name = "place_id")
     private Place place;
 
+
+
     public Room(){
 
     }
@@ -53,13 +55,7 @@ public class Room {
         this.name = name;
     }
 
-    public String getPicture() {
-        return picture;
-    }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
 
     public Place getPlace() {
         return place;
@@ -68,6 +64,8 @@ public class Room {
     public void setPlace(Place place) {
         this.place = place;
     }
+
+
 
 
 

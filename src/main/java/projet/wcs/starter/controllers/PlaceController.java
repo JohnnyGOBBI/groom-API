@@ -50,9 +50,8 @@ public class PlaceController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         placeRepository.deleteById(id);
-        return "redirect:/places";
     }
 
 
