@@ -16,6 +16,10 @@ public class Location {
     @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE)
     private List<Place> places;
 
+
+
+
+
     public List<Place> getPlaces() {
         return places;
     }
@@ -27,13 +31,7 @@ public class Location {
     public Location(){
 
     }
-    public String getPicture() {
-        return picture;
-    }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
 
 
     public int getId() {
@@ -61,7 +59,11 @@ public class Location {
     }
 
 
+    public String getPicture() {
+        return picture;
+    }
 
-
-
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 }
