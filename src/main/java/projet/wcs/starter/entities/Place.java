@@ -75,6 +75,9 @@ public class Place {
     }
 
     public String getPicture() {
+        if(picture == null) {
+            return null;
+        }
         return new String(picture, StandardCharsets.UTF_8);
     }
 
