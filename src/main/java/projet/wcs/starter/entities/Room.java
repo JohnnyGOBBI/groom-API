@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jdk.jshell.Snippet;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
 
@@ -14,7 +15,9 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String picture;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private byte[] picture;
     private int capacity;
 
 
@@ -65,7 +68,16 @@ public class Room {
         this.place = place;
     }
 
+    public String getPicture() {
+        if(picture == null) {
+            return null;
+        }
+        return new String(picture, StandardCharsets.UTF_8);
+    }
 
+    public void setPicture(String picture) {
+        this.picture = picture.getBytes();
+    }
 
 
 

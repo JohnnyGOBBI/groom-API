@@ -1,5 +1,7 @@
 package projet.wcs.starter.dto;
 
+import jakarta.persistence.Lob;
+
 import java.util.List;
 
 
@@ -7,6 +9,7 @@ public class LocationDto {
     private int id;
     private String name;
     private String address;
+    @Lob
     private String picture;
     private List<PlaceDto> places;
 
