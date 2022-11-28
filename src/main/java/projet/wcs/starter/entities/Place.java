@@ -78,6 +78,7 @@ public class Place {
         if(picture == null) {
             return null;
         }
+
         return new String(picture, StandardCharsets.UTF_8);
     }
 
