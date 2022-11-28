@@ -1,5 +1,6 @@
 package projet.wcs.starter.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.nio.charset.StandardCharsets;
@@ -70,6 +71,7 @@ public class Location {
     }
 
     public void setPicture(String picture) {
-        this.picture = picture.getBytes();
+        if(picture != null)
+            this.picture = picture.getBytes();
     }
 }

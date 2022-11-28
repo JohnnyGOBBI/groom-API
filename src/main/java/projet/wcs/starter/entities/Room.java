@@ -76,7 +76,8 @@ public class Room {
     }
 
     public void setPicture(String picture) {
-        this.picture = picture.getBytes();
+        if(picture != null)
+            this.picture = picture.getBytes();
     }
 
 

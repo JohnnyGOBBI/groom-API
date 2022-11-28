@@ -82,7 +82,8 @@ public class Place {
     }
 
     public void setPicture(String picture) {
-        this.picture = picture.getBytes();
+        if(picture != null)
+            this.picture = picture.getBytes();
     }
 
 }
