@@ -78,12 +78,12 @@ public class Place {
         if(picture == null) {
             return null;
         }
-
         return new String(picture, StandardCharsets.UTF_8);
     }
 
     public void setPicture(String picture) {
-        this.picture = picture.getBytes();
+        if(picture != null)
+            this.picture = picture.getBytes();
     }
 
 }
