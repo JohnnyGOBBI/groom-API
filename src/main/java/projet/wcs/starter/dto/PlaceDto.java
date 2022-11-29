@@ -1,7 +1,6 @@
 package projet.wcs.starter.dto;
 
 import jakarta.persistence.Lob;
-import projet.wcs.starter.entities.Location;
 
 
 public class PlaceDto {

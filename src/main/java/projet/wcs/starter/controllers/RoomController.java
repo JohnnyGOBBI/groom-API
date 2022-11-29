@@ -58,6 +58,11 @@ public class RoomController {
         return modelMapper.map(room, RoomDto.class);
     }
 
+    @DeleteMapping("/rooms/{id}")
+    public void delete(@PathVariable Long id) {
+        roomRepository.deleteById(id);
+    }
+
     @RequestMapping("/places/{id}/rooms")
     public List<Room> getRoomsByplaceId(@PathVariable int id) {
         return roomRepository.findByPlaceId(id);

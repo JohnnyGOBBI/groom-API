@@ -15,7 +15,7 @@ public class Place {
     private String map;
 
 
-    @OneToMany(mappedBy = "place")
+    @OneToMany(mappedBy = "place", cascade = CascadeType.REMOVE)
     private List<Room> rooms;
 
 
@@ -75,11 +75,15 @@ public class Place {
     }
 
     public String getPicture() {
+        if(picture == null) {
+            return null;
+        }
         return new String(picture, StandardCharsets.UTF_8);
     }
 
     public void setPicture(String picture) {
-        this.picture = picture.getBytes();
+        if(picture != null)
+            this.picture = picture.getBytes();
     }
 
 }

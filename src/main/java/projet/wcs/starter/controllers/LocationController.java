@@ -42,9 +42,8 @@ public class LocationController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         locationRepository.deleteById(id);
-        return "redirect:/locations";
     }
 
 
