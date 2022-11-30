@@ -1,5 +1,8 @@
 package projet.wcs.starter.entities;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.data.jpa.repository.Modifying;
+
 import java.util.Date;
 
 
@@ -10,8 +13,11 @@ public class Booking {
     private int id;
     private String bookingNumber;
     private String password;
+    @NotNull
     private Date beginDate;
+    @NotNull
     private Date endDate;
+    @NotNull
     private String email;
 
     public Date getBeginDate() {

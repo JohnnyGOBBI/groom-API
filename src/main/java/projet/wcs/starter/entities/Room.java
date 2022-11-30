@@ -2,6 +2,7 @@ package projet.wcs.starter.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jdk.jshell.Snippet;
 
 import java.nio.charset.StandardCharsets;
@@ -14,25 +15,24 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull
+
     private String name;
+
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] picture;
     private int capacity;
 
-
-//    @ManyToOne(fetch=FetchType.EAGER, optional=true, cascade = CascadeType.ALL)
     @ManyToOne
+
     @JsonIgnore
     @JoinColumn(name = "place_id")
     private Place place;
 
-
-
     public Room(){
 
     }
-
 
     public int getCapacity() {
         return capacity;

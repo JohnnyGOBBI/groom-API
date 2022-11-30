@@ -36,6 +36,7 @@ public class Mapper {
                     mapper.map(src -> src.getBeginDate(),BookingDto::setBeginDate);
                     mapper.map(src -> src.getEndDate(),BookingDto::setEndDate);
                     mapper.map(src -> src.getEmail(),BookingDto::setEmail);
+
                 }
         );
         

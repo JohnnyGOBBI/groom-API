@@ -10,12 +10,9 @@ import projet.wcs.starter.repositories.PlaceRepository;
 import java.util.List;
 import java.util.Optional;
 
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
-
 @RequestMapping("/places")
 
 public class PlaceController {
@@ -59,6 +56,10 @@ public class PlaceController {
     public Optional<Place> getPlaces(@PathVariable long id){
         return placeRepository.findById(id);
     }
+
+
+
+
 
 
 
