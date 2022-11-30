@@ -1,7 +1,9 @@
 package projet.wcs.starter.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Entity
@@ -11,10 +13,16 @@ public class Location {
     private int id;
     private String name;
     private String address;
-    private String picture;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private byte[] picture;
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE)
     private List<Place> places;
+
+
+
+
 
     public List<Place> getPlaces() {
         return places;
@@ -27,13 +35,7 @@ public class Location {
     public Location(){
 
     }
-    public String getPicture() {
-        return picture;
-    }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
 
 
     public int getId() {
@@ -61,7 +63,15 @@ public class Location {
     }
 
 
+    public String getPicture() {
+        if(picture == null) {
+            return null;
+        }
+        return new String(picture, StandardCharsets.UTF_8);
+    }
 
-
-
+    public void setPicture(String picture) {
+        if(picture != null)
+            this.picture = picture.getBytes();
+    }
 }

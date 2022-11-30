@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jdk.jshell.Snippet;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,13 +18,14 @@ public class Room {
     @NotNull
 
     private String name;
-    @NotNull
-    private String picture;
-    @NotNull
+
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private byte[] picture;
     private int capacity;
 
+    @ManyToOne
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.PERSIST)
     @JsonIgnore
     @JoinColumn(name = "place_id")
     private Place place;
@@ -56,13 +58,7 @@ public class Room {
         this.name = name;
     }
 
-    public String getPicture() {
-        return picture;
-    }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
 
     public Place getPlace() {
         return place;
@@ -70,6 +66,18 @@ public class Room {
 
     public void setPlace(Place place) {
         this.place = place;
+    }
+
+    public String getPicture() {
+        if(picture == null) {
+            return null;
+        }
+        return new String(picture, StandardCharsets.UTF_8);
+    }
+
+    public void setPicture(String picture) {
+        if(picture != null)
+            this.picture = picture.getBytes();
     }
 
 

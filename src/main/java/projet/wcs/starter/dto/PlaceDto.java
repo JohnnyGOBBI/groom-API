@@ -1,6 +1,6 @@
 package projet.wcs.starter.dto;
 
-import projet.wcs.starter.entities.Location;
+import jakarta.persistence.Lob;
 
 
 public class PlaceDto {
@@ -9,6 +9,11 @@ public class PlaceDto {
     private String map;
 
     private int locationId;
+
+
+
+    @Lob
+    private String picture;
 
     public int getLocationId() {
         return locationId;
@@ -41,5 +46,13 @@ public class PlaceDto {
 
     public void setMap(String map) {
         this.map = map;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

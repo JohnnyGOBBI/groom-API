@@ -16,6 +16,8 @@ public class Product {
     @Length(min = 5, max = 128)
     private String name;
 
+
+
     private float price;
 
     public Integer getId() {

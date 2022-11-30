@@ -44,8 +44,7 @@ public class RoomController {
 
     @PostMapping("/rooms")
     public RoomDto create(@RequestBody RoomDto roomDto) {
-        Room room = modelMapper.map(roomDto, Room.class);
-        Room savedRoom = roomRepository.save(room);
+        Room savedRoom = roomRepository.save(modelMapper.map(roomDto, Room.class));
         return modelMapper.map(savedRoom, RoomDto.class);
     }
 
@@ -54,6 +53,11 @@ public class RoomController {
         roomDto.setId(id);
         Room room = roomRepository.save(modelMapper.map(roomDto, Room.class));
         return modelMapper.map(room, RoomDto.class);
+    }
+
+    @DeleteMapping("/rooms/{id}")
+    public void delete(@PathVariable Long id) {
+        roomRepository.deleteById(id);
     }
 
     @RequestMapping("/places/{id}/rooms")
@@ -69,6 +73,7 @@ public class RoomController {
     @RequestMapping("/room/placeandcapcity")
     public List<Room> getRoomsByPlaceNameAndCapacity(@RequestParam int capacity) {
         return roomRepository.findByCapacity(capacity);
+    }
 
     }
 

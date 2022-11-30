@@ -1,8 +1,11 @@
 package projet.wcs.starter.dto;
 
+import jakarta.persistence.Lob;
+
 public class RoomDto {
     private int id;
     private String name;
+    @Lob
     private String picture;
     private int capacity;
     private String placeId;
