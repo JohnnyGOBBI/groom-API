@@ -37,7 +37,7 @@ public class RoomController {
         ).collect(Collectors.toList());
     }
 
-    @GetMapping("/room/{id}")
+    @GetMapping("/rooms/{id}")
     public RoomDto getRoom(@PathVariable long id) {
         return modelMapper.map(roomRepository.findById(id).get(),RoomDto.class);
     }
@@ -57,7 +57,7 @@ public class RoomController {
 
     @DeleteMapping("/rooms/{id}")
     public void delete(@PathVariable Long id) {
-        roomRepository.deleteById(id);
+       roomRepository.deleteById(id);
     }
 
     @RequestMapping("/places/{id}/rooms")
