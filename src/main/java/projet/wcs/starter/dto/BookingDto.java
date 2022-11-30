@@ -6,8 +6,37 @@ public class BookingDto {
     private int id;
     private String bookingNumber;
     private String password;
-    private Date beginDate;
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
     private Date endDate;
+    private int roomId;
+
+    private Date beginDate;
+    public Date getBeginDate() {
+        return beginDate;
+    }
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
+
+
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
 
     public int getId() {
         return id;
@@ -17,7 +46,7 @@ public class BookingDto {
         this.id = id;
     }
 
-    public String getBookingNumber() {
+    public String  getBookingNumber() {
         return bookingNumber;
     }
 
@@ -33,22 +62,6 @@ public class BookingDto {
         this.password = password;
     }
 
-    public Date getBeginDate() {
-        return beginDate;
-    }
-
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -58,5 +71,6 @@ public class BookingDto {
     }
 
     private String email;
+
 
 }

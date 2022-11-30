@@ -48,9 +48,17 @@ public class ApplicationSecurity {
                                 request -> request.getMethod().equals("OPTIONS")
                                         || request.getRequestURI().contains("/auth/")
 
-                                || (request.getMethod().equals("GET") && request.getRequestURI().contains("/rooms"))
+                                || (request.getMethod().equals("GET") && request.getRequestURI().contains("/rooms/"))
+
+
+                                        || (request.getMethod().equals("GET") && request.getRequestURI().contains("/room/"))
 
                                         || (request.getMethod().equals("GET") && request.getRequestURI().contains("/places"))
+
+                                        || (request.getMethod().equals("POST") && request.getRequestURI().contains("/booking"))
+
+                                        || (request.getMethod().equals("GET") && request.getRequestURI().contains("/booking"))
+
 
                         ).permitAll()
                         .anyRequest().authenticated()
