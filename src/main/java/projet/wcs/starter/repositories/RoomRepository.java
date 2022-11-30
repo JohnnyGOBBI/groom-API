@@ -19,7 +19,7 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
 
     public List<Room> findByPlaceIdAndCapacity(long placeId, int capacity);
     
-    public List<RoomDto> findByPlaceIdAndCapacityAfter(int placeId, int capacity);
+    public List<Room> findByPlaceIdAndCapacityAfter(long placeId, int capacity);
 
 
 

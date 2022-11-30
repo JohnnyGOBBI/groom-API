@@ -1,18 +1,33 @@
 package projet.wcs.starter.services;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projet.wcs.starter.repositories.BookingRepository;
-import projet.wcs.starter.repositories.RoomRepository;
 
+import java.security.SecureRandom;
 
 
 @Service
 public class RoomService {
-    @Autowired
-    private RoomRepository roomRepository;
-    @Autowired
-    private BookingRepository bookingRepository;
+    public static String generateRandomNumber()
+    {
+        int len = 8;
+        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < len; i++)
+        {
+            int randomIndex = random.nextInt(chars.length());
+            sb.append(chars.charAt(randomIndex));
+        }
+
+        return sb.toString();
+    }
+
+    public static void main(String[] args)
+    {
+
+        System.out.println(generateRandomNumber());
+    }
 
 
 

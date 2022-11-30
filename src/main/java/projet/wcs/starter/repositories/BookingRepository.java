@@ -3,6 +3,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import projet.wcs.starter.dto.BookingDto;
+import projet.wcs.starter.dto.RoomDto;
 import projet.wcs.starter.entities.Booking;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.List;
 @Transactional
 public interface BookingRepository extends JpaRepository<Booking,Long> {
 
-    List<BookingDto> findByRoomId(long id);
+    List<Booking> findByRoomId(long id);
+
+
 }
 

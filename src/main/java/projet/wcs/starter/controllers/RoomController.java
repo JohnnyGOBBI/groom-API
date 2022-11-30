@@ -1,19 +1,16 @@
 package projet.wcs.starter.controllers;
-
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import projet.wcs.starter.dto.RoomDto;
-import projet.wcs.starter.entities.Room;
-import projet.wcs.starter.dto.BookingDto;
 import projet.wcs.starter.entities.Booking;
+import projet.wcs.starter.entities.Room;
 import projet.wcs.starter.repositories.BookingRepository;
 import projet.wcs.starter.repositories.LocationRepository;
 import projet.wcs.starter.repositories.RoomRepository;
 import projet.wcs.starter.services.RoomService;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -33,7 +30,7 @@ public class RoomController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @GetMapping("/rooms")
+    @GetMapping("/rooms/all")
     public List<RoomDto> getAllRooms() {
         return roomRepository.findAll().stream().map(
                 rooms -> modelMapper.map(rooms, RoomDto.class)
@@ -64,34 +61,37 @@ public class RoomController {
         return roomRepository.findByPlaceId(id);
     }
 
-    @RequestMapping("/roomList")
-    public List<Room> getRoomsByPlaceAndCapacity(@RequestParam long placeId,@RequestParam int capacity){
+    @RequestMapping("/room/{id}/place")
+    public List<Room> getRoomsByPlaceAndCapacity(@RequestParam long placeId, @RequestParam int capacity){
         return roomRepository.findByPlaceIdAndCapacity(placeId,capacity);
     }
 
     @RequestMapping("/room/placeandcapcity")
-    public List<Room> getRoomsByPlaceNameAndCapacity(@RequestParam int capacity){
+    public List<Room> getRoomsByPlaceNameAndCapacity(@RequestParam int capacity) {
         return roomRepository.findByCapacity(capacity);
 
+    }
+
+
     @RequestMapping("/rooms/bookings")
-    public List<RoomDto> getRoomsByPlaceAndCapacity(@RequestParam  int placeId, @RequestParam int capacity, @RequestParam String beginString, @RequestParam String  endString) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    public List<Room> getRoomsByPlaceAndCapacity(@RequestParam  int placeId,@RequestParam int capacity,@RequestParam String beginString,@RequestParam String  endString) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date beginDate = simpleDateFormat.parse(beginString);
         Date endDate = simpleDateFormat.parse(endString);
-       List<RoomDto> rooms = roomRepository.findByPlaceIdAndCapacityAfter(placeId,capacity);
+        List<Room> rooms = roomRepository.findByPlaceIdAndCapacity(placeId, capacity);
         return rooms.stream().filter(room -> {
-            List<BookingDto> bookings = bookingRepository.findByRoomId(room.getId());
-            bookings= bookings.stream().filter(booking -> {
-                boolean beginDateIsInSearch = booking.getBeginDate().compareTo(beginDate) > 0 && booking.getBeginDate().compareTo(endDate)<0;
-                boolean endDateIsInSearch = booking.getEndDate().compareTo(beginDate) > 0 && booking.getEndDate().compareTo(endDate)<0;
+            List<Booking> bookings = bookingRepository.findByRoomId(room.getId());
+            bookings = bookings.stream().filter(booking -> {
+                boolean beginDateIsInSearch = booking.getBeginDate().compareTo(beginDate) > 0 && booking.getBeginDate().compareTo(endDate) < 0;
+                boolean endDateIsInSearch = booking.getEndDate().compareTo(beginDate) > 0 && booking.getEndDate().compareTo(endDate) < 0;
                 boolean searchIsInBooking = booking.getBeginDate().compareTo(beginDate) < 0 && booking.getEndDate().compareTo(endDate) > 0;
 
-                if(beginDateIsInSearch || endDateIsInSearch || searchIsInBooking ) {
+                if (beginDateIsInSearch || endDateIsInSearch || searchIsInBooking) {
                     return false;
                 }
                 return true;
             }).toList();
-            if (bookings.size() > 0){
+            if (bookings.size() > 0) {
                 return false;
             }
             return true;
@@ -101,6 +101,6 @@ public class RoomController {
 
 
 
+
+
 }
-
-

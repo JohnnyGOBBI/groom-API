@@ -5,7 +5,7 @@ public class RoomDto {
     private String name;
     private String picture;
     private int capacity;
-    private int placeId;
+    private String placeId;
 
     public int getId() {
         return id;
@@ -41,11 +41,11 @@ public class RoomDto {
     }
 
 
-    public int getPlaceId() {
+    public String getPlaceId() {
         return placeId;
     }
 
-    public void setPlaceId(int placeId) {
+    public void setPlaceId(String placeId) {
         this.placeId = placeId;
     }
 
