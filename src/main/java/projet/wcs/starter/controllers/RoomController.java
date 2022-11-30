@@ -40,7 +40,7 @@ public class RoomController {
         ).collect(Collectors.toList());
     }
 
-    @GetMapping("/room/{id}")
+    @GetMapping("/rooms/{id}")
     public RoomDto getRoom(@PathVariable long id) {
         return modelMapper.map(roomRepository.findById(id).get(),RoomDto.class);
     }

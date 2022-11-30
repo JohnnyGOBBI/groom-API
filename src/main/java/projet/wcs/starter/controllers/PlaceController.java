@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
-
 @RequestMapping("/places")
 
 public class PlaceController {
