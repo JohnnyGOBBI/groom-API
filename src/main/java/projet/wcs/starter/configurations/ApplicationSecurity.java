@@ -54,6 +54,7 @@ public class ApplicationSecurity {
                                         || (request.getMethod().equals("GET") && request.getRequestURI().contains("/room/"))
 
                                         || (request.getMethod().equals("GET") && request.getRequestURI().contains("/places"))
+                                        || (request.getMethod().equals("GET") && request.getRequestURI().contains("/locations"))
 
                                         || (request.getMethod().equals("POST") && request.getRequestURI().contains("/booking"))
 

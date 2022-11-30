@@ -79,6 +79,7 @@ public class RoomController {
 
 
     @RequestMapping("/rooms/bookings")
+
     public List<Room> getRoomsByPlaceAndCapacity(@RequestParam  int placeId,@RequestParam int capacity,@RequestParam String beginString,@RequestParam String  endString) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date beginDate = simpleDateFormat.parse(beginString);
