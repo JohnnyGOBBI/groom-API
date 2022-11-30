@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
-@CrossOrigin
 @RequestMapping("/bookings")
 @Transactional
 
