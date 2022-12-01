@@ -4,7 +4,9 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import projet.wcs.starter.dto.BookingDto;
 import projet.wcs.starter.entities.Booking;
 import projet.wcs.starter.repositories.BookingRepository;
@@ -29,7 +31,7 @@ public class BookingController {
     private RoomRepository roomRepository;
 
 
-  @PostMapping("/bookings")
+  @PostMapping()
       public BookingDto postBooking(@RequestBody @Valid BookingDto bookingDto) {
       bookingDto.setBookingNumber(RoomService.generateRandomNumber());
       Booking bookings = modelMapper.map(bookingDto, Booking.class);
@@ -39,17 +41,26 @@ public class BookingController {
 
   }
     @GetMapping()
-    public BookingDto getBookings(@RequestParam String beginDate,@RequestParam String  endDate,@RequestParam String  roomId,@RequestParam String bookingNumber) {
-        return modelMapper.map(bookingRepository.findAll().getClass(),BookingDto.class);
+    public List<Booking> getBookings(@RequestParam(required = false) String number) {
+      return bookingRepository.findAll();
     }
 
 
     @GetMapping("/{id}")
     public BookingDto getBooking(@PathVariable long id) {
-        return modelMapper.map(bookingRepository.findById(id).get(),BookingDto.class);
+      return modelMapper.map(bookingRepository.findById(id), BookingDto.class);
+    }
+
+    @GetMapping("/byNumber")
+    public BookingDto getBooking(@RequestParam String number, @RequestParam(required = false) String password) {
+        BookingDto bookingDto = modelMapper.map(bookingRepository.findByBookingNumber(number).get(), BookingDto.class);
+        if (bookingDto.getPassword() != null && !bookingDto.getPassword().equals(password)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        return bookingDto;
     }
     
-        @PutMapping("/{id}")
+    @PutMapping("/{id}")
     public BookingDto update(@PathVariable int id, @RequestBody @Valid BookingDto bookingDto) {
         bookingDto.setId(id);
         Booking booking = bookingRepository.save(modelMapper.map(bookingDto, Booking.class));
@@ -58,7 +69,11 @@ public class BookingController {
     
         @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        bookingRepository.deleteById(id);
+      try{
+          bookingRepository.deleteById(id);
+      } catch (Exception e) {
+          System.out.println(e);
+      }
     }
 
 }

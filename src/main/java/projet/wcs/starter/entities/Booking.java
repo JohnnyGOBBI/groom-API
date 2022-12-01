@@ -11,6 +11,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String bookingNumber;
     private String password;
     @NotNull

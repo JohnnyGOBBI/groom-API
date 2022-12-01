@@ -32,11 +32,11 @@ public class Mapper {
         TypeMap<Booking, BookingDto> propertyMapperBooking = modelMapper.createTypeMap(Booking.class, BookingDto.class);
         propertyMapperBooking.addMappings(
                 mapper -> {
-                    mapper.map(src -> src.getRoom().getId(),BookingDto::setId);
+                    mapper.map(src -> src.getRoom().getId(),BookingDto::setRoomId);
                     mapper.map(src -> src.getBeginDate(),BookingDto::setBeginDate);
                     mapper.map(src -> src.getEndDate(),BookingDto::setEndDate);
                     mapper.map(src -> src.getEmail(),BookingDto::setEmail);
-
+                    mapper.map(src -> src.getBookingNumber(),BookingDto::setBookingNumber);
                 }
         );
         

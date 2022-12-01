@@ -17,4 +17,5 @@ public interface PlaceRepository extends JpaRepository<Place,Long> {
 
     public List<Place> findAll();
 
+
 }
