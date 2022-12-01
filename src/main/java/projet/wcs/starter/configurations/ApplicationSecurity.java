@@ -56,9 +56,11 @@ public class ApplicationSecurity {
                                         || (request.getMethod().equals("GET") && request.getRequestURI().contains("/places"))
                                         || (request.getMethod().equals("GET") && request.getRequestURI().contains("/locations"))
 
-                                        || (request.getMethod().equals("POST") && request.getRequestURI().contains("/booking"))
+                                        || (request.getMethod().equals("POST") && request.getRequestURI().contains("/bookings"))
 
-                                        || (request.getMethod().equals("GET") && request.getRequestURI().contains("/booking"))
+                                        || (request.getMethod().equals("GET") && request.getRequestURI().contains("/bookings"))
+                                        || (request.getMethod().equals("DELETE") && request.getRequestURI().contains("/bookings/"))
+                                        || (request.getMethod().equals("PUT") && request.getRequestURI().contains("/bookings/"))
 
 
                         ).permitAll()

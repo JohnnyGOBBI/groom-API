@@ -75,7 +75,7 @@ public class RoomController {
         return roomRepository.findByCapacity(capacity);
     }
 
-    }
+
 
 
     @RequestMapping("/rooms/bookings")
